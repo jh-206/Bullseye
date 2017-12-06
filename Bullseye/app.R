@@ -1,14 +1,20 @@
 
 library(shiny)
 
+# Define the fields we want to save from the form
+fields <- c("lag_input", "red_bull_input")
+
 # Define UI for application that draws a histogram
 ui <- fluidPage(
   
-  DT::dataTableOutput("lags", width = 300), tags$hr(),
+  titlePanel("Bullseye Project"),
    
   selectInput(inputId = "lag_input", label = "Lag", choices = 1:100),
+  checkboxInput("red_bull_input", "Double Bullseye", FALSE),
   
-  actionButton("record", "Record")
+  actionButton("record", "Record"),
+  
+  DT::dataTableOutput("lags", width = 300), tags$hr()
   
    # Application title
    # titlePanel("Bullseye Project"),
@@ -52,15 +58,16 @@ server <- function(input, output) {
   }
   
   lagData <- reactive({
-    input$lag_input
+    data <- sapply(fields, function(x) input[[x]])
+    data
   })
   
-  observeEvent(input$submit, {
+  observeEvent(input$record, {
     saveData(lagData())
   })
   
   output$lags <- DT::renderDataTable({
-    input$submit
+    input$record
     loadData()
   })     
    
