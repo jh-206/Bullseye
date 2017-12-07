@@ -8,13 +8,27 @@ fields <- c("lag_input", "red_bull_input")
 ui <- fluidPage(
   
   titlePanel("Bullseye Project"),
+  
+  mainPanel(
+    tabsetPanel(
+      type = "tab",
+      tabPanel("Record Data",
+               fluidRow(
+                 column(width = 7,
+                        selectInput(inputId = "lag_input", label = "Lag", choices = 1:100),
+                        checkboxInput("red_bull_input", "Double Bullseye", FALSE),
+                        
+                        actionButton("record", "Record")),
+                 column(width = 5,
+                       DT::dataTableOutput("lags", width = 300), tags$hr())
+               )
+      ),
+      tabPanel("Analyze"
+               
+      )
+    )
+  )
    
-  selectInput(inputId = "lag_input", label = "Lag", choices = 1:100),
-  checkboxInput("red_bull_input", "Double Bullseye", FALSE),
-  
-  actionButton("record", "Record"),
-  
-  DT::dataTableOutput("lags", width = 300), tags$hr()
   
    # Application title
    # titlePanel("Bullseye Project"),
