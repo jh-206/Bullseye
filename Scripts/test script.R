@@ -10,14 +10,5 @@ hist(bulls$lag)
 nrow(bulls)
 sum(bulls$lag)
 
-b.wide <- data.frame("throw" = rep(1:6, 35))
-unlist(sapply(bulls$lag, function(x) c(rep(0, x - 1), 1)))
 
-b.wide$"bull" <- unlist(sapply(bulls$lag, function(x) c(rep(0, x - 1), 1)))
-
-b.wide$"red" <- b.wide$"bull"
-b.wide$red[which(b.wide$red == 1)[which(bulls$red == 0)]] = 0
-
-b.wide$bull <- as.factor(b.wide$bull)
-b.wide$red <- as.factor(b.wide$red)
-
+hist_wrap(bulls$lag)

@@ -15,6 +15,7 @@ ui <- fluidPage(
       tabPanel("Record Data",
                fluidRow(
                  column(width = 7,
+                        textInput(inputId = "user_input", label = "User"),
                         selectInput(inputId = "lag_input", label = "Lag", choices = 1:100),
                         checkboxInput("red_bull_input", "Double Bullseye", FALSE),
                         
@@ -23,34 +24,17 @@ ui <- fluidPage(
                        DT::dataTableOutput("lags", width = 300), tags$hr())
                )
       ),
-      tabPanel("Analyze"
-               
+      tabPanel("Analyze",
+               fluidRow(
+                 column(width = 4,
+                        selectInput(inputId = "analysis_input", label = "Analysis Type", choices = c("Basic Summary", "Time Series", "Poisson Process"))),
+                 column(width = 8,
+                        textOutput(outputId = "analysis_output"))
+               )
       )
     )
   )
    
-  
-   # Application title
-   # titlePanel("Bullseye Project"),
-   
-   # Sidebar with a slider input for number of bins 
-   # sidebarLayout(
-   #   sidebarPanel(
-   #     selectInput(inputId = "lag_input", label = "Lag", choices = 1:100)
-   #   ),
-      
-      # mainPanel(
-      #   tabsetPanel(
-      #     type = "tab",
-      #     tabPanel("Data Collection",
-      #              textOutput("tracker")
-      #     ),
-      #     tabPanel("Analysis",
-      #              tableOutput("bullseye_table")
-      #     )
-      #   )
-      # )
-   # )
 )
 
 # Define server logic required to draw a histogram
@@ -83,11 +67,11 @@ server <- function(input, output) {
   output$lags <- DT::renderDataTable({
     input$record
     loadData()
-  })     
+  }, colnames = c("Lag", "Red"))     
    
-   # output$tracker <- renderText({
-   #   print(input$lag_input)
-   # })
+   output$analysis_output <- renderText({
+     print(input$analysis_input)
+   })
    
 }
 
