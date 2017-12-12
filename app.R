@@ -1,8 +1,8 @@
 
 library(shiny)
 
-# Define the fields we want to save from the form
-fields <- c("lag_input", "red_bull_input")
+# Source Initiate Script
+source(file.path(getwd(), "Scripts", "initiateApp.R"))
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -39,21 +39,6 @@ ui <- fluidPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-  
-  saveData <- function(data) {
-    data <- as.data.frame(t(data))
-    if (exists("lags")) {
-      lags <<- rbind(lags, data)
-    } else {
-      lags <<- data
-    }
-  }
-  
-  loadData <- function() {
-    if (exists("lags")) {
-      lags
-    }
-  }
   
   lagData <- reactive({
     data <- sapply(fields, function(x) input[[x]])

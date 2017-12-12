@@ -48,5 +48,8 @@
     return(ts.plt)
   }
   
+  acf_wrap <- function(vec, main = NULL, ...) {
+    acf(vec, main = main)
+  }
   
   
