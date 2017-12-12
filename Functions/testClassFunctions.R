@@ -4,21 +4,32 @@
 #                                 #
 #*********************************#
 
-analysisObj <- function(df, cl = NULL) {
-  
-  if(!is.null(cl)){class(df) <- cl}
-  
-  return(df)
-}
+
+
+# analysisObj <- function(df, cl = NULL) {
+#   
+#   if(!is.null(cl)){class(df) <- cl}
+#   
+#   return(df)
+# }
+
+# Custom plot functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 plt <- function(aObj) {
-  UseMethod("plt", aObj)
+  UseMethod("plt")
 }
 
 plt.default <- function(aObj) {
-  hist_wrap(aObj$lag)
+  hist_wrap(aObj)
 }
 
-plt.tseries <- function(aObj) {
-  ts_plot_wrap(aObj$lag)
+plt.ts <- function(aObj) {
+  ts_plot_wrap(aObj)
 }
+
+
+# Custom summary functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+summary_table(bulls)
+
+

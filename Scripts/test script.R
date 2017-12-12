@@ -9,6 +9,16 @@ sd(bulls$lag)
 hist(bulls$lag)
 nrow(bulls)
 sum(bulls$lag)
+nrow(bulls) / sum(bulls$lag)
 
 
 hist_wrap(bulls$lag)
+
+
+
+analysis <- "poisson process"
+
+switch(analysis,
+       "time series" = plt(ts(bulls$lag)),
+       "poisson process" = plt(bulls$lag))
+

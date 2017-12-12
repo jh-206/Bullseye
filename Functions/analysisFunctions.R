@@ -9,7 +9,7 @@
   summary_table <- function(b) {
     require(dplyr)
     
-    summary.table <- bulls %>%
+    summary.table <- b %>%
       dplyr::summarise("N" = scales::comma(n()),
                        "Mean Lag" = round(mean(lag), 2),
                        "Median Lag" = round(median(lag), 2))
@@ -17,7 +17,7 @@
   }
   
 
-# ggplot Histogram Wrapper ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ggplot Wrappers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   hist_wrap <- function(vec, main = "Histogram of Bullseye Lags", ...) {
     require(ggplot2)
@@ -33,9 +33,6 @@
           ...)
     return(h)
   }
-
-
-# ggplot Time Series Wrapper ----------------------------------------------
 
   ts_plot_wrap <- function(vec) {
     
