@@ -31,5 +31,5 @@ plt.ts <- function(aObj) {
 # Custom summary functions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 summary_table(bulls)
-
+summary(bulls$lag)
 

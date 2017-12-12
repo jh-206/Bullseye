@@ -11,8 +11,9 @@
     
     summary.table <- b %>%
       dplyr::summarise("N" = scales::comma(n()),
-                       "Mean Lag" = round(mean(lag), 2),
-                       "Median Lag" = round(median(lag), 2))
+                       "Mean" = round(mean(lag), 2),
+                       "Median" = round(median(lag), 2),
+                       "SD" = round(sd(lag), 2))
     return(summary.table)
   }
   
