@@ -11,7 +11,7 @@
   } 
   
 
-# Shift Plot Axis to Cartesian --------------------------------------------
+# Shift Plot Axis to Cartesian ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   shift_axis <- function(p, y=0){
     g <- ggplotGrob(p)
@@ -23,5 +23,22 @@
       theme(axis.text.x = element_blank(),
             axis.ticks.x=element_blank())
     
+  }
+  
+# Save and Load Date ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+  saveData <- function(data) {
+    data <- as.data.frame(t(data))
+    if (exists("lags")) {
+      lags <<- rbind(lags, data)
+    } else {
+      lags <<- data
+    }
+  }
+  
+  loadData <- function() {
+    if (exists("lags")) {
+      lags
+    }
   }
   
