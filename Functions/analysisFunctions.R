@@ -39,8 +39,7 @@
     
     ts.obj <- data.frame(Bullseye = 0:length(vec), Lag = c(0, vec))
     
-    ts.plt <- ggplot(ts.obj, aes(x = Bullseye, y = Lag))  + 
-      theme_bw()
+    ts.plt <- ggplot(ts.obj, aes(x = Bullseye, y = Lag))
     
     ts.plt <- ts.plt + geom_point(size = .8) + geom_line()
     

@@ -29,7 +29,8 @@ ui <- fluidPage(
                  column(width = 4,
                         selectInput(inputId = "analysis_input", label = "Analysis Type", choices = c("Basic Summary", "Time Series", "Poisson Process"))),
                  column(width = 8,
-                        textOutput(outputId = "analysis_output"))
+                        textOutput(outputId = "analysis_output"),
+                        tableOutput(outputId = "analysis_table"))
                )
       )
     )
@@ -57,6 +58,10 @@ server <- function(input, output) {
    output$analysis_output <- renderText({
      print(input$analysis_input)
    })
+   
+   # output$analysis_table <- renderTable({
+   #    
+   # })
    
 }
 

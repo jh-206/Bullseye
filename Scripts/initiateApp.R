@@ -20,5 +20,5 @@
 
 # Set Conditions ----------------------------------------------------------
 
-  # Define the fields we want to save from the form
+  # Define the fields we want to save from the input
   fields <- c("lag_input", "red_bull_input")
