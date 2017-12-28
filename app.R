@@ -51,12 +51,16 @@ server <- function(input, output) {
   })
   
   output$lags <- DT::renderDataTable({
-    input$record
-    loadData()
+    b.data()
   }, colnames = c("Lag", "Red"))     
    
    output$analysis_output <- renderText({
      print(input$analysis_input)
+   })
+   
+   b.data <- reactive({
+     input$record
+     loadData()
    })
    
    # output$analysis_table <- renderTable({

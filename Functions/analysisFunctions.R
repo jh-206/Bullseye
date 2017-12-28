@@ -35,7 +35,8 @@
     return(h)
   }
 
-  ts_plot_wrap <- function(vec) {
+  ts_plot_wrap <- function(vec, main = NULL) {
+    require(ggplot2)
     
     ts.obj <- data.frame(Bullseye = 0:length(vec), Lag = c(0, vec))
     
@@ -43,11 +44,15 @@
     
     ts.plt <- ts.plt + geom_point(size = .8) + geom_line()
     
+    ts.plt <- ts.plt + labs(title = main)
+    
     # shift_axis(ts.plt, 0)
     return(ts.plt)
   }
   
   acf_wrap <- function(vec, main = NULL, ...) {
+    require(stats)
+    
     acf(vec, main = main)
   }
   
